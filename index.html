@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Mulligan Valorant Strats</title>
-        <link rel="stylesheet" type="text/css" href="home.css">
-        <link rel="shortcut icon" type="image/x-icon" href="Images/Icon.ico"/>
+        <title>RSC Demo Website</title>
+        <link rel="stylesheet" type="text/css" href="./style.css">
+        <link rel="shortcut icon" type="image/x-icon" href="../RSC-Icon.ico"/>
+        <script src="https://kit.fontawesome.com/810972f47f.js" crossorigin="anonymous"></script>
+        <script src="./navbar.js"></script>
     </head>
-    <div id="menu">
-        <div id="menu-items">
-            <a href="#" class="menu-item">Home</a>
-            <a href="agents.html" class="menu-item">Comps</a>
-            <a href="strategies.html" class="menu-item">Strategies</a>
-            <a href="lineups.html" class="menu-item">Lineups</a>
-        </div>
-        <div id="pattern"></div>
-        <div id="image"></div>
+    <button id="nav-btn" onclick="switchNav()">
+       <i id="n" class="fa-solid fa-arrow-right fa-2xl"></i>
+    </button>
+    <div id="nav" class="navbar">
+        <a>NAVBAR</a>
     </div>
-    <script>
-        const menu = document.getElementById("menu");
-        
-        Array.from(document.getElementsByClassName("menu-item")).forEach((item, index) => {
-            item.onmouseover = () => {
-              menu.dataset.activeIndex = index;
-            }
-          });
-    </script>
+    <div id="move" class="outer-container">
+        <div class="middle-container">
+            <div class="inner-container">
+                <div class="card-container">
+                    <div class="card logo">
+                        <img src="https://cdn.discordapp.com/avatars/336146049053753346/25563d778f8068d739ad9a127d18adcd.webp?size=320">
+                    </div>
+                    <div class="card name">
+                        Dolphino
+                    </div>
+                    <div class="card stats">
+                        Loading...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </html>
