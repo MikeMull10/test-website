@@ -7,6 +7,9 @@
         <script src="https://kit.fontawesome.com/810972f47f.js" crossorigin="anonymous"></script>
         <script src="navbar.js"></script>
     </head>
+    <script>
+        
+    </script>
     <button id="nav-btn" onclick="switchNav()">
        <i id="n" class="fa-solid fa-arrow-right fa-2xl"></i>
     </button>
@@ -17,12 +20,11 @@
         <div class="middle-container">
             <div class="inner-container">
                 <div class="card-container">
-                    <div class="card logo">
-                        <img src="https://cdn.discordapp.com/avatars/336146049053753346/25563d778f8068d739ad9a127d18adcd.webp?size=320">
+                    <div class="card logo" id="avatar">
+                        <!-- <img src="https://cdn.discordapp.com/avatars/336146049053753346/25563d778f8068d739ad9a127d18adcd.webp?size=320"> -->
+                        <img src="">
                     </div>
-                    <div class="card name">
-                        Dolphino
-                    </div>
+                    <div class="card name" id="username"></div>
                     <div class="card stats">
                         Loading...
                     </div>
@@ -30,4 +32,26 @@
             </div>
         </div>
     </div>
+    <script>
+        window.onload = () => {
+            const fragment = new URLSearchParams(window.location.hash.slice(1));
+            const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
+
+            if (!accessToken) {
+                window.location.href('/');
+            }
+
+            fetch('https://discord.com/api/users/@me', {
+                headers: {
+                    authorization: `${tokenType} ${accessToken}`,
+                },
+            }).then(result => result.json())
+            .then(response => {
+                const {username, discriminator, avatar, id} = response;
+                document.getElementById('username').innerText = `${username}#${discriminator}`;
+                document.getElementById('avatar').src = `https://cdn.discordapp.com/${id}/${avatar}.png`;
+            })
+            .catch(console.error);
+        }
+    </script>
 </html>
