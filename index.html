@@ -36,11 +36,15 @@
     <script>
         function loaded() {
             console.log("DATA LOADED.");
+            console.log(window.data);
+            
+            window.player_data = window.data[window.user_id];
+            document.getElementById("franchise").innerText = window.player_data["Franchise"];
+            document.getElementById("team").innerText = winOdow.player_data["Team"];
+            console.log("Franchise and Team Data Loaded.");
         }
 
         window.onload = () => {
-            $.getJSON("Data.json", function (data) { window.data = data; loaded(); });
-
             const fragment = new URLSearchParams(window.location.hash.slice(1));
             const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
 
@@ -55,6 +59,7 @@
             .then(response => {
                 console.log(response);
                 const {username, discriminator, avatar, id} = response;
+                window.user_id = id;
 
                 //set the welcome username string
                 document.getElementById('username').innerText = `${username}#${discriminator}`;
@@ -63,36 +68,10 @@
                 document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
 
                 document.getElementById("info").innerText = "Successfully loaded discord info.";
-                console.log("TEST 2: ", window.player_data);
                 
-                window.player_data = window.data[id];
-                document.getElementById("franchise").innerText = window.player_data["Franchise"];
-                document.getElementById("team").innerText = window.player_data["Team"];
-                console.log("Franchise and Team Data Loaded.");
+                $.getJSON("Data.json", function (data) { window.data = data; loaded(); });
             })
             .catch(console.error);
         }
-    </script>
-    <script>
-        var globalOne = 3;
-        testOne();
-
-        function testOne() {
-            globalOne += 2;
-            alert("globalOne is :" + globalOne );
-            globalOne += 1;
-        }
-
-        alert("outside globalOne is: " + globalOne);
-
-        testTwo();
-
-        function testTwo() {
-            globalTwo = 20;
-            alert("globalTwo is " + globalTwo);
-            globalTwo += 5;
-        }
-
-        alert("outside globalTwo is:" + globalTwo);
     </script>
 </html>
