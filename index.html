@@ -12,6 +12,7 @@
     </button>
     <div id="nav" class="navbar">
         <a href="https://discord.com/api/oauth2/authorize?client_id=1044633768360693790&redirect_uri=https%3A%2F%2Fmulligan-test-website.onrender.com%2F&response_type=token&scope=identify">LOGIN</a>
+        <a href="https://discord.com/api/oauth2/authorize?client_id=1044633768360693790&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&response_type=token&scope=identify">LOGIN</a>
     </div>
     <div id="move" class="outer-container">
         <div class="middle-container">
@@ -58,8 +59,12 @@
             
             if (!Object.keys(matches).includes(tier)) return;
             document.getElementById("gpbody").innerText += " in " + tier;
-            document.getElementById("gp").innerText = window.player_data["GP"];
-            document.getElementById("totalgp").innerText = matches[tier];
+            sp1 = document.getElementById("gp");
+            txt = document.createTextNode(window.player_data["GP"]);
+            sp1.appendChild(txt);
+            sp2 = document.getElementById("totalgp");
+            txt2 = document.createTextNode("/" + matches[tier]);
+            sp2.appendChild(txt2);
 
             if (!Object.keys(window.colors).includes(franchise)) return;
             var r = document.querySelector(':root');  // Root
@@ -72,7 +77,7 @@
             const fragment = new URLSearchParams(window.location.hash.slice(1));
             const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
 
-            if (!accessToken) {return console.log("NO ACCESS TOKEN");}
+            if (!accessToken) {switchNav(); return console.log("NO ACCESS TOKEN");}
 
             fetch('https://discord.com/api/users/@me', {
                 headers: {
