@@ -34,7 +34,13 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
+        function loaded() {
+            console.log("DATA LOADED.");
+        }
+
         window.onload = () => {
+            $.getJSON("Data.json", function (data) { window.data = data; loaded(); });
+
             const fragment = new URLSearchParams(window.location.hash.slice(1));
             const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
 
@@ -57,17 +63,12 @@
                 document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
 
                 document.getElementById("info").innerText = "Successfully loaded discord info.";
-
-                $.getJSON("Data.json", function (data) {
-                    if (!Object.keys(data).includes(id)) return;
-                    window.player_data = data[id];
-                    console.log("TEST 1: ", window.player_data);
-
-                    document.getElementById("franchise").innerText = window.player_data["Franchise"];
-                    document.getElementById("team").innerText = window.player_data["Team"];
-                    console.log("Franchise and Team Data Loaded.");
-                });
                 console.log("TEST 2: ", window.player_data);
+                
+                window.player_data = window.data[id];
+                document.getElementById("franchise").innerText = window.player_data["Franchise"];
+                document.getElementById("team").innerText = window.player_data["Team"];
+                console.log("Franchise and Team Data Loaded.");
             })
             .catch(console.error);
         }
