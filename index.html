@@ -8,13 +8,13 @@
         <script src="navbar.js"></script>
     </head>
     <script>
-        
+        var logged_in = false;
     </script>
     <button id="nav-btn" onclick="switchNav()">
        <i id="n" class="fa-solid fa-arrow-right fa-2xl"></i>
     </button>
     <div id="nav" class="navbar">
-        <a>NAVBAR</a>
+        <a href="https://discord.com/api/oauth2/authorize?client_id=1044633768360693790&redirect_uri=https%3A%2F%2Fmulligan-test-website.onrender.com%2F&response_type=token&scope=identify">LOGIN</a>
     </div>
     <div id="move" class="outer-container">
         <div class="middle-container">
@@ -25,7 +25,7 @@
                         <img src="">
                     </div>
                     <div class="card name" id="username"></div>
-                    <div class="card stats">
+                    <div class="card stats" id="info">
                         Loading...
                     </div>
                 </div>
@@ -49,12 +49,14 @@
             .then(result => result.json())
             .then(response => {
                 console.log(response);
-                const { username, discriminator, avatar, id} = response;
+                const {username, discriminator, avatar, id} = response;
                 //set the welcome username string
-                document.getElementById('name').innerText = ` ${username}#${discriminator}`;
+                document.getElementById('name').innerText = `${username}#${discriminator}`;
 
                 //set the avatar image by constructing a url to access discord's cdn
                 document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
+
+                document.getElementById("info").innerText = "Successfully loaded discord info.";
             })
             .catch(console.error);
         }
