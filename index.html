@@ -72,4 +72,26 @@
             .catch(console.error);
         }
     </script>
+    <script>
+        var globalOne = 3;
+        testOne();
+
+        function testOne() {
+            globalOne += 2;
+            alert("globalOne is :" + globalOne );
+            globalOne += 1;
+        }
+
+        alert("outside globalOne is: " + globalOne);
+
+        testTwo();
+
+        function testTwo() {
+            globalTwo = 20;
+            alert("globalTwo is " + globalTwo);
+            globalTwo += 5;
+        }
+
+        alert("outside globalTwo is:" + globalTwo);
+    </script>
 </html>
