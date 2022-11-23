@@ -33,14 +33,11 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script>
+    <!-- <script>
         $(document).ready(function () {
-            $.getJSON("Data.json", function (data) {
-                console.log(data);
-                var json_data = data;
-            });
+            
         });
-    </script>
+    </script> -->
     <script defer>
         window.onload = () => {
             // const data_json = JSON.parse(document.open("Data.json"));
@@ -68,13 +65,16 @@
 
                 document.getElementById("info").innerText = "Successfully loaded discord info.";
 
-                console.log("JSON: ", window.json_data);
+                $.getJSON("Data.json", function (data) {
+                    console.log(data);
+                    var json_data = data;
+                });
+                console.log("JSON: ", json_data);
 
-                document.getElementById("franchise").innerText = window.json_data[id]["Franchise"];
-                document.getElementById("team").innerText = window.json_data[id]["Team"];
+                document.getElementById("franchise").innerText = json_data[id]["Franchise"];
+                document.getElementById("team").innerText = json_data[id]["Team"];
             })
             .catch(console.error);
         }
-        console.log("JSON: ", window.json_data);
     </script>
 </html>
