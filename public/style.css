@@ -9,8 +9,8 @@
 
 :root {
     --background: #999;
-    --primary: 247, 212, 3;
-    --secondary: 7, 41, 72;
+    --primary: 180, 180, 180;
+    --secondary: 180, 180, 180;
 }
 
 #nav-btn {

@@ -35,16 +35,24 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         function loaded() {
-            console.log("DATA LOADED.");
-            console.log(window.data);
+            if (window.data == null || window.colors == null) return;
+
+            if (!Object.keys(window.data).includes(window.user_id)) return;
             
             window.player_data = window.data[window.user_id];
-            document.getElementById("franchise").innerText = window.player_data["Franchise"];
-            document.getElementById("team").innerText = winOdow.player_data["Team"];
+            let franchise = window.player_data["Franchise"];
+            document.getElementById("franchise").innerText = franchise;
+            document.getElementById("team").innerText = window.player_data["Team"];
             console.log("Franchise and Team Data Loaded.");
+            
+            if (!Object.keys(window.colors).includes(franchise)) return;
+            var r = document.querySelector(':root');  // Root
+            r.style.setProperty('--primary', window.color[franchise]["primary"]);
+            r.style.setProperty('--secondary', window.color[franchise]["secondary"]);
         }
 
         window.onload = () => {
+
             const fragment = new URLSearchParams(window.location.hash.slice(1));
             const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
 
@@ -70,6 +78,7 @@
                 document.getElementById("info").innerText = "Successfully loaded discord info.";
                 
                 $.getJSON("Data.json", function (data) { window.data = data; loaded(); });
+                $.getJSON("Colors.json", function (data) { window.colors = data; loaded(); });
             })
             .catch(console.error);
         }
