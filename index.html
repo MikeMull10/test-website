@@ -12,7 +12,6 @@
     </button>
     <div id="nav" class="navbar">
         <a href="https://discord.com/api/oauth2/authorize?client_id=1044633768360693790&redirect_uri=https%3A%2F%2Fmulligan-test-website.onrender.com%2F&response_type=token&scope=identify">LOGIN</a>
-        <a href="https://discord.com/api/oauth2/authorize?client_id=1044633768360693790&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&response_type=token&scope=identify">LOGIN</a>
     </div>
     <div id="move" class="outer-container">
         <div class="middle-container">
@@ -28,7 +27,7 @@
                     </div>
                     <div class="card stats" id="info">
                         <body id="gpbody">S15 Games Played</body>
-                        <h1><span style="size: 70px;" id="gp"></span><span id="totalgp"></span></h1>
+                        <h1><span style="font-size: 70px;" id="gp"></span><span id="totalgp"></span></h1>
                     </div>
                 </div>
             </div>
@@ -58,13 +57,13 @@
             };
             
             if (!Object.keys(matches).includes(tier)) return;
-            // document.getElementById("gpbody").innerText += " in " + tier;
-            // sp1 = document.getElementById("gp");
-            // txt = document.createTextNode(window.player_data["GP"]);
-            // sp1.appendChild(txt);
-            // sp2 = document.getElementById("totalgp");
-            // txt2 = document.createTextNode("/" + matches[tier]);
-            // sp2.appendChild(txt2);
+            document.getElementById("gpbody").innerText = "S15 Games Played in " + tier;
+            sp1 = document.getElementById("gp");
+            txt = document.createTextNode(window.player_data["GP"]);
+            sp1.appendChild(txt);
+            sp2 = document.getElementById("totalgp");
+            txt2 = document.createTextNode("/" + matches[tier]);
+            sp2.appendChild(txt2);
 
             if (!Object.keys(window.colors).includes(franchise)) return;
             var r = document.querySelector(':root');  // Root
