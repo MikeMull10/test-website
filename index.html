@@ -36,7 +36,9 @@
     <script>
         $(document).ready(function () {
             $.getJSON("Data.json", function (data) {
+                console.log(data);
                 var json_data = data;
+                alert(json_data);
             });
         });
     </script>
