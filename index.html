@@ -58,11 +58,18 @@
 
                 document.getElementById("info").innerText = "Successfully loaded discord info.";
 
+                var player_data;
                 $.getJSON("Data.json", function (data) {
-                    console.log(data);
+                    if (!Object.keys(data).includes(id)) return;
+                    player_data = data[id];
+                    console.log(player_data);
+
                     document.getElementById("franchise").innerText = data[id]["Franchise"];
                     document.getElementById("team").innerText = data[id]["Team"];
+                    console.log("Franchise and Team Data Loaded.");
                 });
+                
+                console.log(player_data);
             })
             .catch(console.error);
         }
