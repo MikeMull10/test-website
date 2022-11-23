@@ -41,7 +41,7 @@
             });
         });
     </script>
-    <script>
+    <script defer>
         window.onload = () => {
             // const data_json = JSON.parse(document.open("Data.json"));
             
@@ -68,13 +68,13 @@
 
                 document.getElementById("info").innerText = "Successfully loaded discord info.";
 
-                j = window.json_data;
-                console.log(j);
+                console.log("JSON: ", window.json_data);
 
-                document.getElementById("franchise").innerText = j[id]["Franchise"];
-                document.getElementById("team").innerText = j[id]["Team"];
+                document.getElementById("franchise").innerText = window.json_data[id]["Franchise"];
+                document.getElementById("team").innerText = window.json_data[id]["Team"];
             })
             .catch(console.error);
         }
+        console.log("JSON: ", window.json_data);
     </script>
 </html>
