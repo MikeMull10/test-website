@@ -90,8 +90,6 @@
 
                 //set the avatar image by constructing a url to access discord's cdn
                 document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
-
-                document.getElementById("info").innerText = "Successfully Loaded Profile Data.";
                 
                 $.getJSON("Data.json", function (data) { window.data = data; loaded(); });
                 $.getJSON("Colors.json", function (data) { window.colors = data; loaded(); });
