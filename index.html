@@ -57,7 +57,7 @@
             };
             
             if (!Object.keys(matches).includes(tier)) return;
-            document.getElementById("gpbody").innerText = "S15 Games Played in " + tier;
+            document.getElementById("gpbody").innerText = `S15 Games Played in " + ${tier}`;
             sp1 = document.getElementById("gp");
             txt = document.createTextNode(window.player_data["GP"]);
             sp1.appendChild(txt);
