@@ -2,14 +2,11 @@
 <html>
     <head>
         <title>RSC Demo Website</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link rel="shortcut icon" type="image/x-icon" href="RSC-Icon.ico"/>
+        <link rel="stylesheet" type="text/css" href="./style.css">
+        <link rel="shortcut icon" type="image/x-icon" href="./RSC-Icon.ico"/>
         <script src="https://kit.fontawesome.com/810972f47f.js" crossorigin="anonymous"></script>
-        <script src="navbar.js"></script>
+        <script src="./navbar.js"></script>
     </head>
-    <script>
-        var logged_in = false;
-    </script>
     <button id="nav-btn" onclick="switchNav()">
        <i id="n" class="fa-solid fa-arrow-right fa-2xl"></i>
     </button>
@@ -35,12 +32,20 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.getJSON("Data.json", function (data) {
+                var json_data = data;
+            });
+        });
+    </script>
     <script>
         window.onload = () => {
+            // const data_json = JSON.parse(document.open("Data.json"));
+            
             const fragment = new URLSearchParams(window.location.hash.slice(1));
             const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-
-            console.log(accessToken, tokenType);
 
             if (!accessToken) {return console.log("NO ACCESS TOKEN");}
 
@@ -62,9 +67,8 @@
 
                 document.getElementById("info").innerText = "Successfully loaded discord info.";
 
-                const j = JSON.parse("Data.json");
-                document.getElementById("franchise").innerText = j[id.toString()]["Franchise"];
-                document.getElementById("team").innerText = j[id.toString()]["Team"];
+                document.getElementById("franchise").innerText = json_data[id.toString()]["Franchise"];
+                document.getElementById("team").innerText = json_data[id.toString()]["Team"];
             })
             .catch(console.error);
         }

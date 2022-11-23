@@ -13,5 +13,4 @@ app.get('/auth/discord', (request, response) => {
 	return response.sendFile('dashboard.html', { root: '.' });
 });
 
-const port = '1000';
-app.listen(port, () => console.log(`App listening at http://localhost:${port}`));
+app.listen(process.env.PORT || 3000);
