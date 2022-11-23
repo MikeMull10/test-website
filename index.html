@@ -47,8 +47,8 @@
             
             if (!Object.keys(window.colors).includes(franchise)) return;
             var r = document.querySelector(':root');  // Root
-            r.style.setProperty('--primary', window.color[franchise]["primary"]);
-            r.style.setProperty('--secondary', window.color[franchise]["secondary"]);
+            r.style.setProperty('--primary', window.colors[franchise]["primary"]);
+            r.style.setProperty('--secondary', window.colors[franchise]["secondary"]);
         }
 
         window.onload = () => {
