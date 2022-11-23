@@ -57,13 +57,9 @@
             };
             
             if (!Object.keys(matches).includes(tier)) return;
-            document.getElementById("gpbody").innerText = `S15 Games Played in " + ${tier}`;
-            sp1 = document.getElementById("gp");
-            txt = document.createTextNode(window.player_data["GP"]);
-            sp1.appendChild(txt);
-            sp2 = document.getElementById("totalgp");
-            txt2 = document.createTextNode("/" + matches[tier]);
-            sp2.appendChild(txt2);
+            document.getElementById("gpbody").innerText = `S15 Games Played in ${tier}`;
+            document.getElementById("gp").innerText = window.player_data["GP"];
+            document.getElementById("totalgp").innerText = `/${matches[tier]}`;
 
             if (!Object.keys(window.colors).includes(franchise)) return;
             var r = document.querySelector(':root');  // Root
