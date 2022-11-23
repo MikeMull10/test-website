@@ -26,7 +26,8 @@
                         <h3 id="team"></h3>
                     </div>
                     <div class="card stats" id="info">
-                        Loading...
+                        <body id="gpbody">S15 Games Played</body>
+                        <h1><span style="size: 70px;" id="gp"></span><span id="totalgp"></span></h1>
                     </div>
                 </div>
             </div>
@@ -43,8 +44,23 @@
             let franchise = window.player_data["Franchise"];
             document.getElementById("franchise").innerText = franchise;
             document.getElementById("team").innerText = window.player_data["Team"];
-            console.log("Franchise and Team Data Loaded.");
+            tier = window.player_data["Tier"];
+            let matches = {
+                "Premier": 14 * 4,
+                "Master": 15 * 4,
+                "Elite": 16 * 4,
+                "Veteran": 16 * 4,
+                "Rival": 16 * 4,
+                "Challenger": 15 * 4,
+                "Prospect": 15 * 4,
+                "Contender": 14 * 4
+            };
             
+            if (!Object.keys(matches).includes(tier)) return;
+            document.getElementById("gpbody").innerText += " in " + tier;
+            document.getElementById("gp").innerText = window.player_data["GP"];
+            document.getElementById("totalgp").innerText = matches[tier];
+
             if (!Object.keys(window.colors).includes(franchise)) return;
             var r = document.querySelector(':root');  // Root
             r.style.setProperty('--primary', window.colors[franchise]["primary"]);
