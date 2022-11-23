@@ -59,8 +59,9 @@
                 document.getElementById("info").innerText = "Successfully loaded discord info.";
 
                 $.getJSON("Data.json", function (data) {
-                    document.getElementById("franchise").innerText = json_data[id]["Franchise"];
-                    document.getElementById("team").innerText = json_data[id]["Team"];
+                    console.log(data);
+                    document.getElementById("franchise").innerText = data[id]["Franchise"];
+                    document.getElementById("team").innerText = data[id]["Team"];
                 });
             })
             .catch(console.error);
