@@ -38,7 +38,6 @@
             $.getJSON("Data.json", function (data) {
                 console.log(data);
                 var json_data = data;
-                alert(json_data);
             });
         });
     </script>
@@ -69,8 +68,10 @@
 
                 document.getElementById("info").innerText = "Successfully loaded discord info.";
 
-                document.getElementById("franchise").innerText = json_data[id.toString()]["Franchise"];
-                document.getElementById("team").innerText = json_data[id.toString()]["Team"];
+                j = window.json_data
+
+                document.getElementById("franchise").innerText = j[id.toString()]["Franchise"];
+                document.getElementById("team").innerText = j[id.toString()]["Team"];
             })
             .catch(console.error);
         }
