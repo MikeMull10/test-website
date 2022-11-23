@@ -33,15 +33,8 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <!-- <script>
-        $(document).ready(function () {
-            
-        });
-    </script> -->
     <script defer>
         window.onload = () => {
-            // const data_json = JSON.parse(document.open("Data.json"));
-            
             const fragment = new URLSearchParams(window.location.hash.slice(1));
             const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
 
@@ -66,13 +59,9 @@
                 document.getElementById("info").innerText = "Successfully loaded discord info.";
 
                 $.getJSON("Data.json", function (data) {
-                    console.log(data);
-                    var json_data = data;
+                    document.getElementById("franchise").innerText = json_data[id]["Franchise"];
+                    document.getElementById("team").innerText = json_data[id]["Team"];
                 });
-                console.log("JSON: ", json_data);
-
-                document.getElementById("franchise").innerText = json_data[id]["Franchise"];
-                document.getElementById("team").innerText = json_data[id]["Team"];
             })
             .catch(console.error);
         }
