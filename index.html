@@ -33,7 +33,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script defer>
+    <script>
         window.onload = () => {
             const fragment = new URLSearchParams(window.location.hash.slice(1));
             const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
@@ -62,14 +62,14 @@
                 $.getJSON("Data.json", function (data) {
                     if (!Object.keys(data).includes(id)) return;
                     player_data = data[id];
-                    console.log(player_data);
+                    console.log("TEST 1: ", player_data);
 
                     document.getElementById("franchise").innerText = data[id]["Franchise"];
                     document.getElementById("team").innerText = data[id]["Team"];
                     console.log("Franchise and Team Data Loaded.");
                 });
-                
-                console.log(player_data);
+                console.log("TEST 2: ", player_data);
+                console.log("TEST 3: ", window.player_data);
             })
             .catch(console.error);
         }
