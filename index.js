@@ -21,4 +21,6 @@ app.use(function (req, res, next) {
       next();
 });
 
+console.log("INDEX.JS");
+
 app.listen(process.env.PORT || 3000);
