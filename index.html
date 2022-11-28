@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="./styles.css">
         <link rel="shortcut icon" type="image/x-icon" href="./RSC-Icon.ico"/>
         <script src="https://kit.fontawesome.com/810972f47f.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
     </head>
     <body>
         <div class="sidebar">
@@ -56,7 +57,9 @@
                                 </div>
                             </div>
                             <div class="card middle">
-                                <h1 id="username"></h1>
+                                <h1>
+                                    <span id="username"></span><span id="discriminator"></span>
+                                </h1>
                                 <h2 id="franchise"></h2>
                                 <h3 id="team"></h3>
                             </div>
@@ -69,7 +72,20 @@
                         </div>
                         <div class="graph-container">
                             <div class="graph">
-                                GRAPH
+                                <p>S15 Stats</p>
+                                <div class="chart">
+                                    <ul class="numbers">
+                                      <li><span>100</span></li>
+                                      <li><span>50</span></li>
+                                      <li><span>0</span></li>
+                                    </ul>
+                                    <ul class="bars">
+                                      <li><div class="bar" id="sbv" data-percentage="0"></div><span>Your SBV</span></li>
+                                      <li><div class="bar" id="t_avg" data-percentage="0"></div><span>Team Average</span></li>
+                                      <li><div class="bar" id="tier_avg" data-percentage="0"></div><span>Tier Average</span></li>
+                                      <li><div class="bar" id="league_avg" data-percentage="0"></div><span>League Average</span></li>
+                                    </ul>
+                                  </div>
                             </div>
                         </div>
                     </div>
@@ -111,6 +127,21 @@
                 r.style.setProperty('--primary', window.colors[franchise]["primary"]);
                 r.style.setProperty('--secondary', window.colors[franchise]["secondary"]);
                 r.style.setProperty('--accent', window.colors[franchise]["primary"]);
+
+                // HANDLE CHART DATA
+                document.getElementById("sbv").setAttribute('data-percentage', window.player_data["SBV"]);
+                let team = tier = tot = c1 = c2 = c3 = 0;
+                for (const [key, value] of Object.entries(window.data)) {
+                    if (value["RSCID"] == window.player_data["RSCID"]) continue;
+                    let s = parseInt(value["SBV"]);
+                    tot += s; c3++;
+                    if (window.player_data["Tier"] === value["Tier"]) { tier += parseInt(s); c2++; }
+                    if (window.player_data["Team"] === value["Team"]) { team += parseInt(s); c1++; console.log(value["Name"], s)}
+                }
+                document.getElementById("t_avg").setAttribute('data-percentage', (team / c1).toFixed(2));
+                document.getElementById("tier_avg").setAttribute('data-percentage', (tier / c2).toFixed(2));
+                document.getElementById("league_avg").setAttribute('data-percentage', (tot / c3).toFixed(2));
+                graph();
             }
 
             window.onload = () => {
@@ -132,7 +163,8 @@
                     window.user_id = id;
 
                     //set the welcome username string
-                    document.getElementById('username').innerText = `${username}#${discriminator}`;
+                    document.getElementById('username').innerText = `${username}`;
+                    document.getElementById('discriminator').innerText = `#${discriminator}`;
 
                     //set the avatar image by constructing a url to access discord's cdn
                     document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
@@ -141,6 +173,18 @@
                     $.getJSON("Colors.json", function (data) { window.colors = data; loaded(); });
                 })
                 .catch(console.error);
+            }
+        </script>
+        <script type="text/javascript">
+            function graph() {
+                $(function(){
+              $('.bars li .bar').each(function(key, bar){
+                var percentage = $(this).data('percentage');
+                $(this).animate({
+                  'height' : percentage + '%'
+                }, 1000);
+              });
+            });
             }
         </script>
     </body>
