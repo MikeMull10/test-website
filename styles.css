@@ -257,6 +257,7 @@ body {
 
 .graph {
     background-color: rgba(255, 255, 255, .5);
+    color: #fff;
     font-size: 24px;
     text-align: center;
 
@@ -288,4 +289,102 @@ body {
 .bottom {
     position: absolute;
     bottom: 0px;
+}
+
+#avatar {
+    border-radius: 5px;
+}
+
+#discriminator, #gpbody {
+    font-size: 30px;
+}
+
+.chart {
+    width: 500px;
+    height: 300px;
+    display: block;
+    margin: auto;
+    margin-top: auto;
+    user-select: none;
+    -ms-transform: translateY(25%);
+    transform: translateY(25%);
+}
+
+.numbers {
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    width: 50px;
+    height: 100%;
+    display: inline-block;
+    float: left;
+}
+
+.numbers li {
+    list-style: none;
+    height: 150px;
+    position: relative;
+    bottom: 145px;
+}
+
+.numbers span {
+    font-size: 12px;
+    font-weight: 600;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+
+.bars {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    background: #555;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 400px;
+    height: 300px;
+    box-shadow: 0 0 10px 0 #555;
+    border-radius: 5px;
+}
+
+.bars li {
+    display: table-cell;
+    width: 100px;
+    height: 300px;
+    position: relative;
+}
+
+.bars span {
+    width: 100%;
+    position: relative;
+    bottom: -310px;
+    text-align: center;
+}
+
+.bars .bar {
+    display: block;
+    background: rgb(var(--secondary));
+    width: 50px;
+    position: absolute;
+    bottom: 0;
+    margin-left: 25px;
+    text-align: center;
+    box-shadow: 0 0 10px 0 rgba(var(--secondary), .5);
+    transition: 0.5s;
+    transition-property: background, box-shadow;
+}
+
+.bars .bar:hover {
+    background: rgb(var(--primary));
+    box-shadow: 0 0 10px 0 rgba(var(--primary), .5);
+    cursor: pointer;
+}
+
+.bars .bar:before {
+    color: #fff;
+    content: attr(data-percentage);
+    position: relative;
+    bottom: 20px;
 }
