@@ -22,7 +22,7 @@
                             <img src="" id="avatar">
                         </div>
                         <div class="card name">
-                            <h1 id="username"></h1>
+                            <h1><span id="username"></span><span id="discriminator"></span></h1>
                             <h2 id="franchise"></h2>
                             <h3 id="team"></h3>
                         </div>
@@ -92,7 +92,8 @@
                 window.user_id = id;
 
                 //set the welcome username string
-                document.getElementById('username').innerText = `${username}#${discriminator}`;
+                document.getElementById('username').innerText = `${username}`;
+                document.getElementById('discriminator').innerText = `#${discriminator}`;
 
                 //set the avatar image by constructing a url to access discord's cdn
                 document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;

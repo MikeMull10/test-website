@@ -289,3 +289,7 @@ body {
     position: absolute;
     bottom: 0px;
 }
+
+#avatar {
+    border-radius: 5px;
+}
