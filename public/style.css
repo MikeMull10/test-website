@@ -86,6 +86,8 @@
     display: flex;
     flex-wrap: wrap;
 
+    align-items: stretch;
+
     /* height: calc(100% - 20px); */
 }
 
@@ -133,7 +135,6 @@
     position: relative;
     background-color: aqua;
     flex-grow: 1;
-    height: 100%;
 }
 
 .container {
