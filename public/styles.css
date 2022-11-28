@@ -12,11 +12,13 @@
 :root {
     --accent: 223, 109, 52;
     --nav-size: 120px;
+    --primary: 180, 180, 180;
+    --secondary: 180, 180, 180;
 }
 
 body {
     height: 100vh;
-    background-image: url(Background.png);
+    background-image: url(RL.jfif);
     background-repeat: no-repeat;
     background-size: cover;
     font-family: 'Motiva Sans', sans-serif;
@@ -71,6 +73,11 @@ body {
     pointer-events: none;
     scale: 0;
     opacity: 0;
+    user-select: all;
+}
+
+.sidebar .logo a {
+    text-decoration: none;
 }
 
 .sidebar.open .logo h3 {
@@ -191,4 +198,94 @@ body {
     padding: 10px;
 
     transition: all .4s linear;
+}
+
+.outer-container {
+    align-items: center;
+    height: calc(100vh - 100px);
+    margin: 10px;
+    
+    margin-left: 10px;
+    transition: margin-left .5s;
+}
+
+.middle-container {
+    background: linear-gradient(rgba(var(--primary), .4), rgb(var(--secondary), .6));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    height: calc(100vh - 50px);
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.inner-container {
+    border: solid #fff 5px;
+    height: calc(100vh - 120px);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.card-container {
+    height: 30%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, .5);
+
+    font-size: 24px;
+
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.card img {
+    width: 95%;
+    height: 95%;
+    text-align: center;
+    margin: auto;
+    display: block;
+}
+
+.graph-container {
+    height: 70%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.graph {
+    background-color: rgba(255, 255, 255, .5);
+    font-size: 24px;
+    text-align: center;
+
+    width: 100%;
+
+    margin: 10px;
+    padding: 10px;
+    
+    border-radius: 5px;
+}
+
+.left {
+    width: 12vw;
+}
+
+.middle {
+    flex-grow: 5;
+}
+
+.right {
+    flex-grow: 3;
+}
+
+.bot-wrap {
+    height: 100%;
+    position: relative;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0px;
 }
