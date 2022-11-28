@@ -247,6 +247,7 @@ body {
     text-align: center;
     margin: auto;
     display: block;
+    user-select: none;
 }
 
 .graph-container {
